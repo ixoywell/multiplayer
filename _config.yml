@@ -68,6 +68,6 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:github
-  repository:git@github.com:ixoywell/qiu.github.io.git
-  branch:master
+  type: github
+  repository: git@github.com:ixoywell/qiu.github.io.git
+  branch: master
