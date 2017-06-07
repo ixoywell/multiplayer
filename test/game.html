@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/phone.js"></script>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>实时互动游戏</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <style>
+        /*.loading {*/
+        /*display: none;*/
+        /*z-index: 9999;*/
+        /*width: 100%;*/
+        /*height: 100%;*/
+        /*position: fixed;*/
+        /*left: 0;*/
+        /*top: 0;*/
+        /*background: url('img/15.gif') center center no-repeat rgba(0, 0, 0, 0.8);*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div class="music">
+    <audio loop="loop" autoplay="autoplay" id="musicbg">
+        <source src="./music/bgmusic.mp3" type="audio/mpeg">
+    </audio>
+    <audio loop="loop" preload="auto" id="musicbullet">
+        <source src="./music/bullet.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio preload="auto" id="musice1">
+        <source src="./music/enemy1.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="musice2">
+        <source src="./music/enemy1.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="musice3">
+        <source src="./music/enemy1.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="musice4">
+        <source src="./music/enemy1.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="musice5">
+        <source src="./music/enemy1.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio preload="auto" id="musicover">
+        <source src="./music/game_over.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="musicbomb">
+        <source src="./music/bomb.mp3" type="audio/mpeg">
+    </audio>
+</div>
+<!-- loading -->
+
+<div class="loading" style="display: none;">
+    <div class="loading-area">
+        <div class="loading-out">
+            <div id="J_loadProgress" class="loading-inner" style="width:30%"></div>
+        </div>
+        <p id="J_loadTest" class="loading-num">0%</p>
+    </div>
+</div>
+<div class="landscape-wrap" style="display: none;">
+    <div class="landscape">
+        <div class="tips-arrow"></div>
+        <div class="tips-phone"></div>
+    </div>
+</div>
+<!-- logo -->
+<div class="logo" style="display: none;"></div>
+<!-- 首页 -->
+<div class="shouye">
+    <div class="shouye_guaiwu" style="transform: rotate(30deg) translateY(0%);"></div>
+    <div class="shouye_biaoti"></div>
+    <div class="shouye_qiu"></div>
+    <div class="shouye_kaishi"></div>
+    <div class="shouye_paihangbang"></div>
+    <div class="shouye_jiangpin"></div>
+</div>
+<!-- 规则页 -->
+<div class="guize" style="display: none;"></div>
+
+<!-- 游戏页面 -->
+<canvas id="GameCanvas" width="640" height="968" style="display: inline;"></canvas>
+
+<!-- 游戏结束页面 -->
+<div id="over">
+
+
+    <!-- 新纪录弹窗 -->
+    <div class="game1">
+        <div class="guji1"></div>
+        <div class="fenshuxinxi1">
+            <div>
+                哇噻<br>创新纪录~
+            </div>
+            <p>
+                <span class="nowScore">0</span>分!
+            </p>
+        </div>
+        <div class="anniu_pk1"></div>
+        <div class="anniu_zailaiyici1"></div>
+        <div class="anniu_paihangbang1"></div>
+        <div class="anniu_zhuce"></div>
+    </div>
+
+    <!-- 没破纪录弹窗 -->
+    <div class="game2">
+        <div class="guji2"></div>
+        <div class="fenshuxinxi2">
+            <div>
+                咕叽大暴走结束了 …
+            </div>
+            <p>
+                <span class="nowScore">0</span>分!
+            </p>
+        </div>
+        <div class="anniu_pk2"></div>
+        <div class="anniu_zailaiyici2"></div>
+        <div class="anniu_paihangbang2"></div>
+        <div class="anniu_zhuce"></div>
+    </div>
+
+    <!-- 挑战成功弹窗 -->
+    <div class="game3">
+        <div class="guji3"></div>
+        <div class="fenshuxinxi3">
+            <div>
+                哈哈，太容易啦完爆
+            </div>
+            <p>
+                <span class="nowScore">0</span>分!
+            </p>
+        </div>
+        <div class="anniu_pk3"></div>
+        <div class="anniu_zailaiyici3"></div>
+        <div class="anniu_paihangbang3"></div>
+        <div class="anniu_zhuce"></div>
+    </div>
+
+    <!-- 挑战失败弹窗 -->
+    <div class="game4">
+        <div class="guji4"></div>
+        <div class="fenshuxinxi4">
+            <div>
+                呜呜！差点就可以超过
+            </div>
+            <p>
+                <span class="nowScore">0</span>分!
+            </p>
+        </div>
+        <div class="anniu_bufu"></div>
+        <div class="anniu_paihangbang4"></div>
+        <div class="anniu_zhuce"></div>
+    </div>
+</div>
+
+<!-- 关注弹窗 -->
+<div class="guanzhu">
+    <div class="guanzhu_tan">
+        <img src="img/erweima.png" alt="">
+    </div>
+</div>
+
+<!-- 奖品弹窗 -->
+<div class="tan_jiangpin">
+    <div class="jiangpin">
+        <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1da4cc96f128c9d7&amp;redirect_uri=http://lesso.yangyue.com.cn/activity/register/oauth.php&amp;response_type=code&amp;scope=snsapi_base&amp;state=123#wechat_redirect"></a>
+
+        <div class="jiangpin_guanbi"></div>
+    </div>
+</div>
+
+<!-- 排行榜弹窗 -->
+<div class="tan_paihangbang">
+    <div class="paihangbang">
+        <div class="paihangbang_biaoti"></div>
+        <div class="paihangbang_paiming" id="board">
+
+        </div>
+        <div class="paihangbang_huojiangtishi">
+            排行榜成绩截止至12月26日<br>获奖详情请看下期推文
+        </div>
+        <div class="paihangbang_guanbi"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    var bestScore = parseInt('');
+    var friendScore = parseInt('');
+    var isChallenge = parseInt('');
+    var friendNickName = '';
+    var resBoard = 0;
+    var isPlay = 0;
+</script>
+
+<script type="text/javascript" src="js/index.js"></script>
+<script src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/wx-share.js"></script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+
 		<title> Real time multi-player games with HTML5</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 			<!-- Load style sheet -->
 		<link href="index.css" media="screen" rel="stylesheet" type="text/css">
 
@@ -12,25 +12,24 @@
 		 	<!-- Load socket.io client side contents. -->
 		<script src="/socket.io/socket.io.js"></script>
 
+
 	 		<!-- Load the GUI rendering library code. -->
 		<script type="text/javascript" src="lib/dat.gui.min.js"></script>
 			<!-- Load the keyboard specific code --> 
 		<script type="text/javascript" src="lib/keyboard.js"></script>
 	 	
+	<!-- Game code -->
 
+	 		<!-- Load the common game code. -->
+		<script type="text/javascript" src="game.core.js"></script>
+			<!-- Finally, Load the game client code. -->
+		<script type="text/javascript" src="client.js"></script>		
 
 	</head>
 
 	<body>
-		<canvas id="viewport">您的浏览器不支持HTML5 canvas，请换一个高大上，吊炸天浏览器，千万别拖了科技发展的后腿。
+		<canvas id="viewport">
 		</canvas>
 	</body>
-	<!-- Game code -->
 
-	<!-- Load the common game code. -->
-	<!--<script type="text/javascript" src="BlockBlaster.js"></script>-->
-	<!-- Finally, Load the game client code. -->
-	<script type="text/javascript" src="game.js"></script>
-	<script>
-	</script>
 </html>
